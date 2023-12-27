@@ -1,0 +1,90 @@
+package pgmm1;
+import java.util.Scanner;
+
+public class SimpleAtm {
+    private static final int PIN = 7563;
+    private static int attempts = 0;
+    private static int balance = 5000;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to the ICICI Bank ATM!");
+
+        while (attempts < 3) {
+            System.out.println("Please enter your PIN:");
+            int enteredPin = scanner.nextInt();
+
+            if (enteredPin == PIN) {
+                handleTransaction(scanner);
+                break;
+            } else {
+                attempts++;
+                int remainingAttempts = 3 - attempts;
+                System.out.println("Incorrect PIN. " + (remainingAttempts > 0 ?
+                        "You have " + remainingAttempts + " more chance(s)." :
+                        "Your card has been blocked. Please take out your card. Thank you."));
+            }
+        }
+    }
+
+    private static void handleTransaction(Scanner scanner) {
+        System.out.println("Select your account type:\n1. Savings\n2. Current");
+        int accountType = scanner.nextInt();
+        System.out.println("You selected " + (accountType == 1 ? "Savings" : "Current") + " Account.");
+
+        while (true) {
+            System.out.println("Select an operation:\n1. Check Balance\n2. Withdraw\n3. Deposit\n4. Exit");
+            int operation = scanner.nextInt();
+
+            switch (operation) {
+                case 1:
+                    checkBalance();
+                    break;
+                case 2:
+                    performWithdrawal(scanner);
+                    break;
+                case 3:
+                    performDeposit(scanner);
+                    break;
+                case 4:
+                    exitProgram();
+                    break;
+                default:
+                    System.out.println("Invalid input. Try again.");
+            }
+        }
+    }
+
+    private static void performWithdrawal(Scanner scanner) {
+        System.out.println("Enter amount to be withdrawn:");
+        int withdrawalAmount = scanner.nextInt();
+
+        if (withdrawalAmount > 0 && withdrawalAmount <= balance) {
+            balance -= withdrawalAmount;
+            System.out.println("Please collect your cash. Thank you.");
+        } else {
+            System.out.println("Insufficient funds or invalid amount. Enter a valid amount.");
+        }
+    }
+
+    private static void performDeposit(Scanner scanner) {
+        System.out.println("Enter amount to be deposited:");
+        int depositAmount = scanner.nextInt();
+
+        if (depositAmount > 0) {
+            balance += depositAmount;
+            System.out.println("Thank you for your deposit.");
+        } else {
+            System.out.println("Invalid amount. Enter a positive value.");
+        }
+    }
+
+    private static void checkBalance() {
+        System.out.println("Your current balance is: " + balance);
+    }
+
+    private static void exitProgram() {
+        System.out.println("Thank you for banking with ICICI Bank. Have a nice day!");
+        System.exit(0);
+    }
+}
