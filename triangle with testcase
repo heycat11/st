@@ -1,0 +1,48 @@
+package pgm2;
+import java.util.*;
+public class Triangle {
+public String check(int a, int b, int c) {
+while (true) {
+if (a >= 1 && a <= 200 && b >= 1 && b <= 200 && c >= 1 && c <= 200) {
+if ((a < b + c) && (b < a + c) && (c < b + a)) { if (a == b && b == c)
+return ("Given dimensions form an equilateral triangle!"); 
+else if (a == b || b == c || c == a)
+return ("Given dimensions form an isosceles triangle!"); 
+else
+return ("Given dimensions form a scalene triangle!"); } 
+else {
+return ("Given dimensions do not form a triangle!"); }
+} 
+else {
+return ("Enter a valid input!");
+} 
+}
+} 
+}
+
+test cases
+package pgm2;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class aa {
+
+	@Test
+	public void test() {
+		Triangle t1=new Triangle();
+		assertEquals(t1.check(1,2,3),"Given dimensions do not form a triangle!");
+	}
+	@Test
+	public void test1() {
+		Triangle t1=new Triangle();
+		assertEquals(t1.check(2,2,2),"Given dimensions form an equilateral triangle!");
+	}
+	@Test
+	public void test2() {
+		Triangle t1=new Triangle();
+		assertEquals(t1.check(2,2,3),"Given dimensions form an isosceles triangle!");
+	}
+
+}
