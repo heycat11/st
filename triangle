@@ -1,0 +1,30 @@
+package pgm2;
+import java.util.*;
+public class Triangle {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in); 
+int a, b, c;
+while (true) {
+System.out.print("Enter value of 1st side: "); 
+a = scanner.nextInt();
+System.out.print("Enter value of 2nd side: "); 
+b = scanner.nextInt();
+System.out.print("Enter value of 3rd side: ");
+c = scanner.nextInt();
+if (a >= 1 && a <= 200 && b >= 1 && b <= 200 && c >= 1 && c <= 200) {
+if ((a < b + c) && (b < a + c) && (c < b + a)) { if (a == b && b == c)
+System.out.println("Given dimensions form an equilateral triangle!"); 
+else if (a == b || b == c || c == a)
+System.out.println("Given dimensions form an isosceles triangle!");
+else
+System.out.println("Given dimensions form a scalene triangle!");
+break;
+} else {
+System.out.println("Given dimensions do not form a triangle!");
+break;
+} }
+else {
+	System.out.println("Enter a valid input!\n"); }
+	} }
+	}
+
